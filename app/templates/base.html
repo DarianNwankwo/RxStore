@@ -4,6 +4,11 @@
     {% if title %}RxStore | {{ title }}{% else %}RxStore{% endif %}
 {% endblock %}
 
+{% block metas %}
+    {{ super() }}
+    {# Add any extra metadata here. #}
+{% endblock %}
+
 {% block navbar %}
     <nav class="navbar navbar-default">
         <div class="container">
@@ -29,4 +34,14 @@
             </div>
         </div>
     </nav>
+{% endblock %}
+
+{% block content %}
+    {# 
+        Each html doc inherits from this base template. Each document needs to specify its own page content which
+        is to be added using the following syntax below. Any additional information you want each page to have,
+        add it above this comment right below the {% block content %} syntax.
+    #}
+    {% block page_content %}
+    {% endblock %}
 {% endblock %}
