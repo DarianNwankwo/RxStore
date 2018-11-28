@@ -43,6 +43,9 @@ flask run
 
 (NOTE) Development was done on macOS Mojave version 10.14. For other operating systems, it is expected that you understand how to set your environment variables appropriately.
 
+## Developing
+RxStore stores information locally using SQLite, which has its own limitations, but is enough for proof-of-concept. If you decide to change the models to fit your preferences, be sure to track those changes to the database and maintain an updated migration directory. More information on doing so can be found [here](https://flask-migrate.readthedocs.io/en/latest/).
+
 
 ## Built With
 
