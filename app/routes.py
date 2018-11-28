@@ -3,8 +3,8 @@ from flask import render_template, url_for, request, flash, redirect, url_for
 from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.urls import url_parse
 from app import app, db
-from app.forms import LoginForm, RegistrationForm, EditPatientForm, EditHealthcareRepForm, EditPharmRepForm
-from app.models import Patient, PharmRep, HealthcareRep
+from app.forms import LoginForm, RegistrationForm, EditPatientForm, EditPharmacistForm, EditDoctorForm, EditPrescriptionForm
+from app.models import Patient, Doctor, Pharmacist, Prescription
 
 
 ####################################################################################
@@ -21,7 +21,7 @@ def login():
     return render_template("login.html", title="Login")
 
 
-@app.route("/register", methods=["GET", "POST"]):
+@app.route("/register", methods=["GET", "POST"])
 def register():
     return render_template("register.html", title="Register")
 
@@ -56,7 +56,7 @@ def new_patient():
 ####################################################################################
 # Routes for representative
 ####################################################################################
-@app.route("/representative", methods["GET", "POST"])
+@app.route("/representative", methods=["GET", "POST"])
 def representative():
     return render_template("representative/index.html", title="Representative")
 
