@@ -12,6 +12,7 @@ from app.models import Patient, Doctor, Pharmacist, Prescription
 ####################################################################################
 @app.route("/")
 @app.route("/index")
+# @login_required
 def index():
     return render_template("index.html", title="Home")
 
@@ -20,6 +21,11 @@ def index():
 def login():
     return render_template("login.html", title="Login")
 
+
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for("index"))
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
