@@ -37,11 +37,14 @@
 {% endblock %}
 
 {% block content %}
+    {{ super() }}
     {# 
         Each html doc inherits from this base template. Each document needs to specify its own page content which
         is to be added using the following syntax below. Any additional information you want each page to have,
         add it above this comment right below the {% block content %} syntax.
     #}
-    {% block page_content %}
-    {% endblock %}
+    <div class="container">
+        {% block page_content %}
+        {% endblock %}
+    </div>
 {% endblock %}
