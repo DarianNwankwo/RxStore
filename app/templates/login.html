@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 
 {% block html_attribs %}
     {{ super() }}
@@ -9,6 +10,17 @@
 {% endblock %}
 
 {% block page_content %}
+    <h1>Sign In</h1>
+    <div class="row">
+        <div class="col-md-4">
+            {# 
+                Accepts keyword arguments specifying action, method, etc...
+                Check this link for more details: https://pythonhosted.org/Flask-Bootstrap/forms.html
+                #}
+            {{ wtf.quick_form(form) }}
+        </div>
+    </div>
+
     {# Put this page's content inside of this block #}
 {% endblock %}
 
