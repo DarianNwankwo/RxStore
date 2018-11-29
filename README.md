@@ -19,6 +19,13 @@ We **RECOMMEND** using a virtual environment to manage your instance of RxStore.
 
 ```
 python3 -m venv <virtual_environment_name>
+source <virtual_environment_name>/bin/activate
+```
+
+When you are done working in your environment, be sure to deactivate your virtual environment.
+
+```
+deactivate
 ```
 
 RxStore's backend was developed using Python 3.6.5 and the Flask microframework. In order to run the system locally, install all of the packages in **requirements.txt** using the following command.
