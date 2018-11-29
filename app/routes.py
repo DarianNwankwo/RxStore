@@ -12,14 +12,26 @@ from app.models import Patient, Doctor, Pharmacist, Prescription
 ####################################################################################
 @app.route("/")
 @app.route("/index")
-# @login_required
+@login_required
 def index():
     return render_template("index.html", title="Home")
 
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    return render_template("login.html", title="Login")
+    if current_user.is_authenticated:
+        return redirect(url_for("index"))
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = get_user(form)
+        if user is None or not user.check_password(form.password.data):
+            flash("Invalid username or password")
+            return redirect(url_for("login"))
+        login_user(user, remember=form.remember_me.data)
+        next_page = request.args.get("next")
+        if not next_page or url_parse(next_page).netloc != "":
+            return redirect(next_page)
+    return render_template("login.html", title="Login", form=form)
 
 
 @app.route("/logout")
@@ -29,6 +41,7 @@ def logout():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+
     return render_template("register.html", title="Register")
 
 
@@ -80,3 +93,17 @@ def edit_representative(rep_id):
 @app.route("/representative/new")
 def new_representative():
     return render_template("representative/new.html")
+
+
+####################################################################################
+# Utility functions. (TODO): Move to separate file
+####################################################################################
+def get_user(form):
+    type_ = form.user_type.data
+    if type_ == "patient":
+        user = Patient.query.filter_by(username=form.username.data).first()
+    if type_ == "doctor":
+        user = Doctor.query.filter_by(username=form.username.data).first()
+    if type_ == "pharmacist":
+        user = Pharmacist.query.filter_by(username=form.username.data).first()
+    return user
