@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, SelectField
-from wtforms.validators import ValidationError, DataRequired, EqualTo, Length
+from wtforms.validators import ValidationError, DataRequired, EqualTo, Length, Email
 from app.models import Patient, Doctor, Pharmacist, Prescription
 
 
@@ -18,7 +18,13 @@ class LoginForm(FlaskForm):
 
 
 class RegistrationForm(FlaskForm):
-    pass
+    username = StringField('Username', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    password2 = PasswordField(
+        'Repeat Password', validators=[DataRequired(),
+                                           EqualTo('password')])
+    submit = SubmitField('Register')
 
 
 class EditPatientForm(FlaskForm):
