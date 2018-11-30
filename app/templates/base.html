@@ -36,6 +36,65 @@
     </nav>
 {% endblock %}
 
+{% block footer %}
+<footer class="page-footer font-small mdb-color pt-3">
+    <!-- Footer Links -->
+    <div class="container text-center text-md-left">  <!-- Grid row -->
+      <div class="row">  <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 mr-auto my-md-4 my-0 mt-4 mb-1">  <!-- Content -->
+          <h5 class="text-uppercase mb-4">RxStore</h5>
+          <p>RxStore is a distributed information system for patient prescription management that is location agnostic.</p>
+          <p>RxStore currently only handles prescription management, but is capable of
+            handling patient medical information provided enough resources and security.</p>
+        </div> <!-- Grid column -->
+        <hr class="clearfix w-100 d-md-none">  <!-- Grid column -->
+        <div class="col-md-2 col-lg-2 mx-auto my-md-4 my-0 mt-4 mb-1">
+          <!-- Links -->
+          <h5 class="text-uppercase mb-4">Quick Links</h5>
+          <ul class="list-unstyled">
+            <li>
+              <p><a href="#!">Home</a></p>
+            </li>
+            <li>
+              <p><a href="#!">Register</a></p>
+            </li>
+            <li>
+              <p><a href="#!">Profile</a></p>
+            </li>
+            <li>
+              <p><a href="#!">About</a></p>
+            </li>
+          </ul>
+        </div> <!-- Grid column -->
+        <hr class="clearfix w-100 d-md-none">  <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 mx-auto my-md-4 my-0 mt-4 mb-1">
+          <!-- Contact details -->
+          <h5 class="text-uppercase mb-4">Address</h5>
+          <ul class="list-unstyled">
+            <li>
+              <p><i class="fa fa-home mr-3"></i> Ithaca, NY 14853, USA</p>
+            </li>
+            <li>
+              <p><i class="fa fa-envelope mr-3"></i> info@RxStore.com</p>
+            </li>
+            <li>
+              <p><i class="fa fa-phone mr-3"></i>(607)123-4747</p>
+            </li>
+            <li>
+              <p><i class="fa fa-print mr-3"></i>(607)123-4747</p>
+            </li>
+          </ul>
+        </div> <!-- Grid column -->
+        <hr class="clearfix w-100 d-md-none"> <!-- Grid column -->
+      </div> <!-- Grid row -->
+    </div> <!-- Footer Links -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2018 RxStore. All Rights Reserved
+    </div>  <!-- Copyright -->
+  </footer>
+{% endblock %}
+
 {% block content %}
     {{ super() }}
     {#
@@ -44,6 +103,7 @@
         add it above this comment right below the {% block content %} syntax.
     #}
     <div class="container">
+<<<<<<< HEAD
         {% with messages = get_flashed_messages() %}
         {% if messages %}
             {% for message in messages %}
@@ -52,4 +112,9 @@
         {% endif %}
         {% endwith %}
         {% block page_content %}{% endblock %}
+=======
+        {% block page_content %}
+        {% endblock %}
+    </div>
+>>>>>>> 9b52906a4665dff788d4bd8439ad3fb03a635b4a
 {% endblock %}
