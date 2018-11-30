@@ -19,7 +19,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url_for('index') }}">RxStore</a>
+                <a class="navbar-brand" href="index.html">RxStore</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <!-- <ul class="nav navbar-nav">
@@ -29,7 +29,7 @@
                     <li><a href="{{ url_for('register') }}">Register</a></li>
                     <li><a href="{{ url_for('login') }}">Login</a></li>
                     <li><a href="{{ url_for('logout') }}">Logout</a></li>
-                    <li><a href="#">Profile</a></li>
+                    <li><a href="{{ url_for('profile') }}">Profile</a></li>
                 </ul>
             </div>
         </div>
@@ -38,7 +38,7 @@
 
 {% block content %}
     {{ super() }}
-    {# 
+    {#
         Each html doc inherits from this base template. Each document needs to specify its own page content which
         is to be added using the following syntax below. Any additional information you want each page to have,
         add it above this comment right below the {% block content %} syntax.
@@ -52,5 +52,4 @@
         {% endif %}
         {% endwith %}
         {% block page_content %}{% endblock %}
-    </div>
 {% endblock %}

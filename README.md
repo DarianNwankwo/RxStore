@@ -2,6 +2,11 @@
 
 RxStore is a distributed information system for patient prescription management that is location agnostic. RxStore currently only handles prescription management, but is capable of handling patient medical information provided enough resources and security.
 
+## Actionables
+* Insert a footer into base.html that uses Bootstrap 3
+* Figure out why "- [ ]" did not work
+* Update database models for patient to remove primary_physician and migrate
+
 ## Why RxStore?
 RxStore follows the [Chord](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=1180543) protocol to the best of our abilities to ensure that information can be found efficiently and it is capable of handling node joins and departures (failures).
 

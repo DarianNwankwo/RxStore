@@ -12,7 +12,7 @@ from app.models import Patient, Doctor, Pharmacist, Prescription
 ####################################################################################
 @app.route("/")
 @app.route("/index")
-@login_required
+# @login_required
 def index():
     return render_template("index.html", title="Home")
 
@@ -57,6 +57,11 @@ def register():
 ####################################################################################
 # Routes for patient
 ####################################################################################
+@app.route("/profile")
+def profile():
+    return render_template("profile.html", title="Profile of <User>")
+
+
 @app.route("/patient", methods=["GET", "POST"])
 def patient():
     """Display all patients for the current representative. Receives POST request for new users."""
