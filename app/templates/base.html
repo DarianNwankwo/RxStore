@@ -37,62 +37,52 @@
 {% endblock %}
 
 {% block footer %}
-<footer class="page-footer font-small mdb-color pt-3">
-    <!-- Footer Links -->
-    <div class="container text-center text-md-left">  <!-- Grid row -->
-      <div class="row">  <!-- Grid column -->
-        <div class="col-md-4 col-lg-3 mr-auto my-md-4 my-0 mt-4 mb-1">  <!-- Content -->
-          <h5 class="text-uppercase mb-4">RxStore</h5>
-          <p>RxStore is a distributed information system for patient prescription management that is location agnostic.</p>
-          <p>RxStore currently only handles prescription management, but is capable of
-            handling patient medical information provided enough resources and security.</p>
-        </div> <!-- Grid column -->
-        <hr class="clearfix w-100 d-md-none">  <!-- Grid column -->
-        <div class="col-md-2 col-lg-2 mx-auto my-md-4 my-0 mt-4 mb-1">
-          <!-- Links -->
-          <h5 class="text-uppercase mb-4">Quick Links</h5>
-          <ul class="list-unstyled">
-            <li>
-              <p><a href="#!">Home</a></p>
-            </li>
-            <li>
-              <p><a href="#!">Register</a></p>
-            </li>
-            <li>
-              <p><a href="#!">Profile</a></p>
-            </li>
-            <li>
-              <p><a href="#!">About</a></p>
-            </li>
-          </ul>
-        </div> <!-- Grid column -->
-        <hr class="clearfix w-100 d-md-none">  <!-- Grid column -->
-        <div class="col-md-4 col-lg-3 mx-auto my-md-4 my-0 mt-4 mb-1">
-          <!-- Contact details -->
-          <h5 class="text-uppercase mb-4">Address</h5>
-          <ul class="list-unstyled">
-            <li>
-              <p><i class="fa fa-home mr-3"></i> Ithaca, NY 14853, USA</p>
-            </li>
-            <li>
-              <p><i class="fa fa-envelope mr-3"></i> info@RxStore.com</p>
-            </li>
-            <li>
-              <p><i class="fa fa-phone mr-3"></i>(607)123-4747</p>
-            </li>
-            <li>
-              <p><i class="fa fa-print mr-3"></i>(607)123-4747</p>
-            </li>
-          </ul>
-        </div> <!-- Grid column -->
-        <hr class="clearfix w-100 d-md-none"> <!-- Grid column -->
-      </div> <!-- Grid row -->
-    </div> <!-- Footer Links -->
+<head>
+    <title>Footer with Button and Logo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/Footer-with-button-logo.css">
+</head>
 
-    <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2018 RxStore. All Rights Reserved
-    </div>  <!-- Copyright -->
-  </footer>
+<body>
+<div class="content">
+</div>
+    <footer id="myFooter">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-5">
+                    <h5>RxStore</h5>
+                    <p>RxStore is a distributed information system for patient prescription management that is location agnostic.</p>
+                    <p>RxStore currently only handles prescription management, but is capable of
+                      handling patient medical information provided enough resources and security.</p>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="{{ url_for('index') }}">Home</a></li>
+                        <li><a href="{{ url_for('register') }}">Register</a></li>
+                        <li><a href="{{ url_for('profile') }}">Profile</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-2">
+                    <h5>Address</h5>
+                    <ul>
+                        <li><a href="#">Ithaca, NY 14853</a></li>
+                        <li><a href="#">info@RxStore.com</a></li>
+                        <li><a href="#">(607) 123-4747</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>© 2018 RxStore. All Rights Reserved </p>
+        </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
 {% endblock %}
 
 {% block content %}
