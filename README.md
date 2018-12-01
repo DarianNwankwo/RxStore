@@ -10,6 +10,9 @@ RxStore is a distributed information system for patient prescription management 
 ## Why RxStore?
 RxStore follows the [Chord](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=1180543) protocol to the best of our abilities to ensure that information can be found efficiently and it is capable of handling node joins and departures (failures).
 
+## User Capabilities
+RxStore allows for prescription management across patients, doctors, and pharmacists. Patients have full read access to their prescription data but are unable to change any of their prescription information. Doctors have read access to their patients' data but cannot change patient information except for adding new prescriptions. Pharmacists only have read access to patient information and limited write access to prescriptions filled at the pharmacist's respective pharmacy. Pharmacists only have write access when it pertains to updating when and how prescriptions have been filled.
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
@@ -77,5 +80,3 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-
