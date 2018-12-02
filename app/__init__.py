@@ -15,4 +15,5 @@ login.login_view = "login"
 login.login_message = "Please log in to access this page."
 bootstrap = Bootstrap(app)
 
+
 from app import routes, models

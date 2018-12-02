@@ -13,7 +13,7 @@ class Patient(UserMixin, db.Model):
     last_name = db.Column(db.String(32), index=True)
     birthdate = db.Column(db.Date)
     gender = db.Column(db.String(1), index=True)
-    primary_physician = db.Column(db.String(96), index=True)
+    # primary_physician = db.Column(db.String(96), index=True)
     insurance_number = db.Column(db.String(64))
     allergies = db.relationship("Allergies", backref="patient", lazy="dynamic")
     street_address = db.Column(db.String(96))
@@ -49,6 +49,7 @@ class Prescription(db.Model):
     disbursed = db.Column(db.Integer, default=0)
     dosage_strength = db.Column(db.String(5))
     prescribe_date = db.Column(db.DateTime, default=datetime.utcnow)
+    disbursed_date = db.Column(db.DateTime, default=datetime.utcnow)
 
 
 class Doctor(UserMixin, db.Model):

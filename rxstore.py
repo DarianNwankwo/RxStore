@@ -69,7 +69,11 @@
 #         rxstore.start()
 from app import app, db
 from app.models import Prescription, Patient, Doctor, Pharmacist
+from threading import Thread
 
+# Thread(target=app.run, kwargs={"port":5000}).start()
+# Thread(target=app.run, kwargs={"port":5010}).start()
+# app.run()
 
 @app.shell_context_processor
 def make_shell_context():

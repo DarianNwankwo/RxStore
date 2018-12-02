@@ -19,7 +19,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url_for('index') }}">RxStore</a>
+                <a class="navbar-brand" href="index.html">RxStore</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <!-- <ul class="nav navbar-nav">
@@ -29,21 +29,71 @@
                     <li><a href="{{ url_for('register') }}">Register</a></li>
                     <li><a href="{{ url_for('login') }}">Login</a></li>
                     <li><a href="{{ url_for('logout') }}">Logout</a></li>
-                    <li><a href="#">Profile</a></li>
+                    <li><a href="{{ url_for('profile') }}">Profile</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 {% endblock %}
 
+{% block footer %}
+<head>
+    <title>Footer with Button and Logo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/Footer-with-button-logo.css">
+</head>
+
+<body>
+<div class="content">
+</div>
+    <footer id="myFooter">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-5">
+                    <h5>RxStore</h5>
+                    <p>RxStore is a distributed information system for patient prescription management that is location agnostic.</p>
+                    <p>RxStore currently only handles prescription management, but is capable of
+                      handling patient medical information provided enough resources and security.</p>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="{{ url_for('index') }}">Home</a></li>
+                        <li><a href="{{ url_for('register') }}">Register</a></li>
+                        <li><a href="{{ url_for('profile') }}">Profile</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-2">
+                    <h5>Address</h5>
+                    <ul>
+                        <li><a href="#">Ithaca, NY 14853</a></li>
+                        <li><a href="#">info@RxStore.com</a></li>
+                        <li><a href="#">(607) 123-4747</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>© 2018 RxStore. All Rights Reserved </p>
+        </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+{% endblock %}
+
 {% block content %}
     {{ super() }}
-    {# 
+    {#
         Each html doc inherits from this base template. Each document needs to specify its own page content which
         is to be added using the following syntax below. Any additional information you want each page to have,
         add it above this comment right below the {% block content %} syntax.
     #}
     <div class="container">
+<<<<<<< HEAD
         {% with messages = get_flashed_messages() %}
         {% if messages %}
             {% for message in messages %}
@@ -52,5 +102,9 @@
         {% endif %}
         {% endwith %}
         {% block page_content %}{% endblock %}
+=======
+        {% block page_content %}
+        {% endblock %}
     </div>
+>>>>>>> 9b52906a4665dff788d4bd8439ad3fb03a635b4a
 {% endblock %}
