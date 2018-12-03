@@ -1,24 +1,36 @@
 from datetime import datetime
-from flask import render_template, url_for, request, flash, redirect, url_for
+from flask import render_template, url_for, request, flash, redirect, url_for, g
 from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.urls import url_parse
-from app import app, db
+from app import app, db, nodes
 from app.forms import LoginForm, RegistrationForm, EditPatientForm, EditPharmacistForm, EditDoctorForm, EditPrescriptionForm
 from app.models import Patient, Doctor, Pharmacist, Prescription
 
+print(f"App Object: {app}")
+chord_node = None
+####################################################################################
+# Configuration
+####################################################################################
+@app.before_request
+def before_request():
+    global chord_node
+    chord_node = nodes[ get_port() ]
 
 ####################################################################################
 # Routes for anding page, registration, and login
 ####################################################################################
 @app.route("/")
 @app.route("/index")
-@login_required
+# @login_required
 def index():
+    print(chord_node.port)
     return render_template("index.html", title="Home")
 
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    # print(f"Port value: {app.chord_node.port}")
+    print(f"Port value: {request.host}")
     if current_user.is_authenticated:
         return redirect(url_for("index"))
     form = LoginForm()
@@ -116,3 +128,9 @@ def get_user(form):
     if type_ == "pharmacist":
         user = Pharmacist.query.filter_by(username=form.username.data).first()
     return user
+
+
+def get_port():
+    """Returns the current application's port number."""
+    return request.host.split(":")[1]
+

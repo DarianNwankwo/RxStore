@@ -67,8 +67,33 @@
 #         rxstore = Process(target=launch, args=(ports[i],) )
 #         nodes.append(rxstore)
 #         rxstore.start()
-from app import app, db
+from app import apps, db
 from app.models import Prescription, Patient, Doctor, Pharmacist
+# from app.node import Node
+# from config import initialize
+
+# ports = initialize()
+# for p in ports:
+#     pass
+
+
+from threading import Thread
+
+
+for app, node in apps:
+    # app.debug = True
+    # app.use_reloader= False
+    # from app import routes, models
+    Thread(target=app.run, kwargs={"port": node.port}).start()
+    # pass
+    
+    
+    # app.run(port=node.port)
+
+# print(apps)
+# Thread(target=apps[0][0].run, kwargs={"port": 5000}).start()
+# Thread(target=apps[1][0].run, kwargs={"port": 5050}).start()
+
 
 
 @app.shell_context_processor
