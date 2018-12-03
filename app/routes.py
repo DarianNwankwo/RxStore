@@ -69,6 +69,11 @@ def register():
 ####################################################################################
 # Routes for patient
 ####################################################################################
+@app.route("/profile")
+def profile():
+    return render_template("profile.html", title="Profile of <User>")
+
+
 @app.route("/patient", methods=["GET", "POST"])
 def patient():
     """Display all patients for the current representative. Receives POST request for new users."""

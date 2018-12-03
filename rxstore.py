@@ -95,6 +95,9 @@ for app, node in apps:
 # Thread(target=apps[1][0].run, kwargs={"port": 5050}).start()
 
 
+# Thread(target=app.run, kwargs={"port":5000}).start()
+# Thread(target=app.run, kwargs={"port":5010}).start()
+# app.run()
 
 @app.shell_context_processor
 def make_shell_context():

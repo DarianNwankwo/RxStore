@@ -2,8 +2,16 @@
 
 RxStore is a distributed information system for patient prescription management that is location agnostic. RxStore currently only handles prescription management, but is capable of handling patient medical information provided enough resources and security.
 
+## Actionables
+* Insert a footer into base.html that uses Bootstrap 3
+* Figure out why "- [ ]" did not work
+* Update database models for patient to remove primary_physician and migrate
+
 ## Why RxStore?
 RxStore follows the [Chord](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=1180543) protocol to the best of our abilities to ensure that information can be found efficiently and it is capable of handling node joins and departures (failures).
+
+## User Capabilities
+RxStore allows for prescription management across patients, doctors, and pharmacists. Patients have full read access to their prescription data but are unable to change any of their prescription information. Doctors have read access to their patients' data but cannot change patient information except for adding new prescriptions. Pharmacists only have read access to patient information and limited write access to prescriptions filled at the pharmacist's respective pharmacy. Pharmacists only have write access when it pertains to updating when and how prescriptions have been filled.
 
 ## Getting Started
 
@@ -72,5 +80,3 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-

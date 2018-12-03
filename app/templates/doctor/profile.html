@@ -1,0 +1,289 @@
+{% extends "base.html" %}
+
+{% block html_attribs %}
+    {{ super() }}
+{% endblock %}
+
+{% block styles %}
+    {{ super() }}
+{% endblock %}
+
+{% block page_content %}
+    {# Put this page's content inside of this block #}
+    <hr>
+    <div class="container bootstrap snippet">
+    <div class="row">
+  		<div class="col-sm-10"><h1>{{ user.first_name }} {{ user.last_name }}</h1></div>
+    </div>
+    <div class="row">
+  		<div class="col-sm-3"><!--left col-->
+
+
+      <div class="text-center">
+        <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+        <h6>Upload a different photo...</h6>
+        <input type="file" class="text-center center-block file-upload">
+      </div></hr><br>
+
+          <div class="panel panel-default">
+            <div class="panel-heading">Patient Names<i class="fa fa-link fa-1x"></i></div>
+            {% for pat in user.patients %}
+              <li>{{pat.first_name}} {{pat.last_name}}</li>
+            {% endfor %}
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading">Hospital Information <i class="fa fa-link fa-1x"></i></div>
+            <div class="panel-body"><a>Ithaca Family Medicine</a></div>
+            <div class="panel-body"><a>567 Hill Heights</a></div>
+            <div class="panel-body"><a>Ithaca, NY 14850</a></div>
+          </div>
+
+          <ul class="list-group">
+            <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Patients</strong></span>{{doctor.num_patients}}</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Prescription Requests</strong></span>{{doctor.presc_requests}}</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Messages</strong></span>{{doctor.messages}}</li>
+          </ul>
+        </div>
+    	<div class="col-sm-9">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+                <li><a data-toggle="tab" href="#patients">Patient Prescriptions</a></li>
+                <li><a data-toggle="tab" href="#settings">Update Profile</a></li>
+              </ul>
+
+          <div class="tab-content">
+            <div class="tab-pane active" id="home">
+              <h3>My Profile</h3>
+                <hr>
+                  <form class="form" action="##" method="post" id="registrationForm">
+                      <div class="form-group">
+
+                          <div class="col-xs-6">
+                              <label for="first_name"><h4>First name</h4></label>
+                              <input type="text" class="form-control" name="first_name" id="first_name" placeholder={{doctor.first_name}} readonly>
+                          </div>
+                      </div>
+                      <div class="form-group">
+
+                          <div class="col-xs-6">
+                            <label for="last_name"><h4>Last name</h4></label>
+                              <input type="text" class="form-control" name="last_name" id="last_name" placeholder={{doctor.last_name}} readonly>
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <div class="col-xs-6">
+                              <label for="phone"><h4>Phone</h4></label>
+                              <input type="text" class="form-control" name="phone" id="phone" placeholder={{doctor.phone_number}} readonly>
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <div class="col-xs-6">
+                              <label for="email"><h4>Email</h4></label>
+                              <input type="email" class="form-control" name="email" id="email" placeholder={{doctor.email}} readonly>
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="col-xs-6">
+                          <label for="gender"><h4>Gender</h4></label>
+                          <input type="text" class="form-control" name="gender" id="gender" placeholder={{doctor.gender}} readonly>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                          <div class="col-xs-6">
+                              <label for="license"><h4>Medical License #</h4></label>
+                              <input type="license" class="form-control" name="license" id="license" placeholder={{doctor.license}} readonly>
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="col-xs-6">
+                          <label for="inputAddress"><h4>Address</h4></label>
+                          <input type="text" class="form-control" id="inputAddress" placeholder={{doctor.address}} readonly>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="col-xs-6">
+                        <label for="inputAddress2"><h4>Address 2</h4></label>
+                        <input type="text" class="form-control" id="inputAddress2" placeholder={{doctor.address_2}} readonly>
+                      </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="col-xs-6">
+                          <label for="inputCity"><h4>City</h4></label>
+                          <input type="text" class="form-control" id="inputCity" placeholder={{doctor.address_city}} readonly>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                          <label for="inputState"><h4>State</h4></label>
+                          <input id="inputState" class="form-control" placeholder={{doctor.address_state}} readonly>
+                        </div>
+
+                        <div class="form-group col-md-2">
+                          <label for="inputZip"><h4>Zip</h4></label>
+                          <input type="text" class="form-control" id="inputZip" placeholder={{doctor.address_zip}} readonly>
+                        </div>
+                      </div>
+              	</form>
+              <hr>
+            </div>
+
+            <!--/Prescription-pane-->
+             <div class="tab-pane" id="prescriptions">
+               <h3>List of Patient Prescriptions</h3>
+               {% for presc in patients.prescriptions %}
+               <table class= "table table-user-information">
+                <tbody>
+                  <tr>
+                    <td>Name:</td>
+                    <td><{{presc.name}}></td>
+                  </tr>
+                  <tr>
+                    <td>Dosage</td>
+                    <td><{{presc.amount}}></td>
+                  </tr>
+                  <tr>
+                    <td>Refills</td>
+                    <td><{{presc.remaining_refills}}></td>
+                    <!--- I think we should add a variable to discriminate between
+                    the original amount of refills and remaining refills --->
+                  </tr>
+               </tbody>
+               <div class="form-group">
+                    <div class="col-xs-12">
+                         <br>
+                         <button class="btn btn-lg btn-success pull-right" type="submit"><i class="glyphicon glyphicon-ok-sign" {% if pat.refill_request == 0 %} disabled {% endif %}></i>Submit Refill</button>
+                     </div>
+               </div>
+              </table>
+              {% endfor %}
+          </div>
+          <!--/Prescription-pane-->
+
+          <!--/Update Profile-pane-->
+             <div class="tab-pane" id="settings">
+                  <h3>Change Profile Information</h3>
+                  <hr>
+                  <form class="form" action="##" method="post" id="registrationForm">
+                      <div class="form-group">
+
+                          <div class="col-xs-6">
+                              <label for="first_name"><h4>First name</h4></label>
+                              <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">
+                          </div>
+                      </div>
+                      <div class="form-group">
+
+                          <div class="col-xs-6">
+                            <label for="last_name"><h4>Last name</h4></label>
+                              <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <div class="col-xs-6">
+                              <label for="phone"><h4>Phone</h4></label>
+                              <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any.">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <div class="col-xs-6">
+                              <label for="email"><h4>Email</h4></label>
+                              <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="col-xs-6">
+                          <label for="gender"><h4>Gender</h4></label>
+                          <input type="text" class="form-control" name="gender" id="gender" placeholder="enter gender" title="enter your gender.">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                          <div class="col-xs-6">
+                              <label for="license"><h4>Medical License #</h4></label>
+                              <input type="license" class="form-control" id="license" placeholder="enter medical license" title="enter your license number">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="col-xs-6">
+                          <label for="inputAddress"><h4>Address</h4></label>
+                          <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="col-xs-6">
+                          <label for="inputAddress2"><h4>Address 2</h4></label>
+                          <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="col-xs-6">
+                          <label for="inputCity"><h4>City</h4></label>
+                          <input type="text" class="form-control" id="inputCity">
+                        </div>
+
+                        <div class="form-group col-md-4">
+                          <label for="inputState"><h4>State</h4></label>
+                          <select id="inputState" class="form-control">
+                            <option selected>Choose...</option>
+                            <option>...</option>
+                          </select>
+                        </div>
+
+                        <div class="form-group col-md-2">
+                          <label for="inputZip"><h4>Zip</h4></label>
+                          <input type="text" class="form-control" id="inputZip">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                          <div class="col-xs-6">
+                              <label for="password"><h4>Password</h4></label>
+                              <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password.">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <div class="col-xs-6">
+                            <label for="password2"><h4>Verify</h4></label>
+                              <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2.">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                           <div class="col-xs-12">
+                                <br>
+                              	<button class="btn btn-lg btn-success pull-right" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                               	<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                            </div>
+                      </div>
+              	</form>
+              </div>
+              </div><!--/tab-pane-->
+          </div><!--/tab-content-->
+        </div><!--/col-9-->
+    </div><!--/row-->
+
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    {#
+        <script src="{{ url_for('static', 'scripts/profile.js') }}"
+    #}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{% endblock %}
