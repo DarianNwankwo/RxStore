@@ -2,10 +2,18 @@
 
 {% block html_attribs %}
     {{ super() }}
+    {#
+      <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    #}
 {% endblock %}
 
 {% block styles %}
     {{ super() }}
+    {#
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    #}
 {% endblock %}
 
 {% block page_content %}
@@ -18,7 +26,6 @@
     <div class="row">
   		<div class="col-sm-3"><!--left col-->
 
-
       <div class="text-center">
         <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
         <h6>Upload a different photo...</h6>
@@ -27,7 +34,6 @@
 
           <div class="panel panel-default">
             <div class="panel-heading">Doctor Name <i class="fa fa-link fa-1x"></i></div>
-            <div class="panel-body"><a>Dr. Chi Okolo</a></div>
             <div class="panel-body"><a>Dr. {{ doctor.first_name }} {{ doctor.last_name }}</a></div>
           </div>
 
@@ -47,10 +53,10 @@
 
           <ul class="list-group">
             <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Prescriptions</strong></span>{{patient.num_refills}}</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Refills</strong></span>{{patient.num_refills}}</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Expiring</strong></span>{{patient.expiring}}</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Messages</strong></span>{{patient.messages}}</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Prescriptions</strong></span>"{{patient.num_presc}}"</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Refills</strong></span>"{{prescription.refills_left}}"</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Expiring</strong></span>"{{patient.expiring}}"</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Messages</strong></span>"{{patient.messages}}"</li>
           </ul>
         </div>
     	<div class="col-sm-9">
@@ -66,76 +72,92 @@
                 <hr>
                   <form class="form" action="##" method="post" id="registrationForm">
                       <div class="form-group">
-                          <div class="col-xs-6">
-                              <label for="first_name"><h4>First name</h4></label>
-                              <input type="text" class="form-control" name="first_name" id="first_name" placeholder={{patient.first_name}} readonly>
-                          </div>
-                      </div>
+                        <div class="col-xs-4">
+                          <label for="firstname"><h4>First Name</h4></label>
+                          <input type="text" class="form-control" id="firstname" placeholder="{{user.first_name}}" readonly>
+                        </div>
 
-                      <div class="form-group">
-                          <div class="col-xs-6">
-                            <label for="last_name"><h4>Last name</h4></label>
-                              <input type="text" class="form-control" name="last_name" id="last_name" placeholder={{patient.lastt_name}} readonly>
-                          </div>
+                        <div class="form-group col-xs-4">
+                          <label for="middlename"><h4>Middle Name</h4></label>
+                          <input type= "text" class="form-control" id="middlename" placeholder="{{user.middle_name}}" readonly>
+                        </div>
+
+                        <div class="form-group col-xs-4">
+                          <label for="lastname"><h4>Last Name</h4></label>
+                          <input type="text" class="form-control" id="lastname" placeholder="{{user.last_name}}" readonly>
+                        </div>
                       </div>
 
                       <div class="form-group">
                           <div class="col-xs-6">
                               <label for="phone"><h4>Phone</h4></label>
-                              <input type="text" class="form-control" name="phone" id="phone" placeholder={{patient.phone_number}} readonly>
+                              <input type="text" class="form-control" name="phone" id="phone" placeholder="{{patient.phone_number}}" readonly>
                           </div>
                       </div>
 
                       <div class="form-group">
+                          <div class="col-xs-6">
+                              <label for="phone"><h4>Username</h4></label>
+                              <input type="text" class="form-control" name="phone" id="phone" placeholder="{{patient.phone_number}}" readonly>
+                          </div>
+                      </div>
 
+                      <div class="form-group">
                           <div class="col-xs-6">
                               <label for="email"><h4>Email</h4></label>
-                              <input type="email" class="form-control" name="email" id="email" placeholder={{patient.email}} readonly>
+                              <input type="email" class="form-control" name="email" id="email" placeholder="{{user.email}}" readonly>
                           </div>
                       </div>
 
                       <div class="form-group">
                         <div class="col-xs-6">
+                          <label for="birthdate"><h4>Birthdate</h4></label>
+                          <input type="text" class="form-control" name="birthdate" id="birthdate" placeholder="{{user.birthdate}}" readonly>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="col-xs-6">
                           <label for="gender"><h4>Gender</h4></label>
-                          <input type="text" class="form-control" name="gender" id="gender" placeholder={{patient.gender}} readonly>
+                          <input type="text" class="form-control" name="gender" id="gender" placeholder="{{user.gender}}" readonly>
                         </div>
                       </div>
 
                       <div class="form-group">
                           <div class="col-xs-6">
                               <label for="insurance"><h4>Insurance #</h4></label>
-                              <input type="insurance" class="form-control" name="insurance" id="insurance" placeholder={{patient.insurance}} readonly>
+                              <input type="insurance" class="form-control" name="insurance" id="insurance" placeholder="{{user.insurance_number}}" readonly>
                           </div>
                       </div>
 
                       <div class="form-group">
                         <div class="col-xs-6">
-                          <label for="inputAddress"><h4>Address</h4></label>
-                          <input type="text" class="form-control" id="inputAddress" placeholder={{patient.address}} readonly>
+                          <label for="inputAddress"><h4>Street Address</h4></label>
+                          <input type="text" class="form-control" id="inputAddress" placeholder="{{user.street_address}}" readonly>
                         </div>
                       </div>
 
                       <div class="form-group">
                         <div class="col-xs-6">
-                        <label for="inputAddress2"><h4>Address 2</h4></label>
-                        <input type="text" class="form-control" id="inputAddress2" placeholder={{patient.address_2}} readonly>
-                      </div>
+                          <label for="country"><h4>Country</h4></label>
+                          <input type="text" class="form-control" id="country" placeholder="{{user.country}}" readonly>
+                        </div>
                       </div>
 
                       <div class="form-group">
-                        <div class="col-xs-6">
+                        <div class="col-xs-4">
                           <label for="inputCity"><h4>City</h4></label>
-                          <input type="text" class="form-control" id="inputCity" placeholder={{patient.address_city}} readonly>
+                          <input type="text" class="form-control" id="inputCity" placeholder="{{user.city}}" readonly>
                         </div>
 
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-xs-4">
                           <label for="inputState"><h4>State</h4></label>
-                          <input id="inputState" class="form-control" placeholder={{patient.address_state}} readonly>
+                          <input id="inputState" class="form-control" placeholder="{{user.state}}" readonly>
                         </div>
 
-                        <div class="form-group col-md-2">
-                          <label for="inputZip"><h4>Zip</h4></label>
-                          <input type="text" class="form-control" id="inputZip" placeholder={{patient.address_zip}} readonly>
+                        <div class="form-group col-xs-4">
+                          <label for="inputZip"><h4>Zip Code</h4></label>
+                          <input type="text" class="form-control" id="inputZip" placeholder="{{user.zip_code}}" readonly>
                         </div>
                       </div>
               	</form>
@@ -146,30 +168,38 @@
              <div class="tab-pane" id="prescriptions">
                <h3>List of Prescriptions</h3>
                {% for presc in user.prescriptions %}
-               <table class= "table table-user-information">
-                <tbody>
-                  <tr>
-                    <td>Name:</td>
-                    <td><{{presc.name}}></td>
-                  </tr>
-                  <tr>
-                    <td>Dosage</td>
-                    <td><{{presc.amount}}></td>
-                  </tr>
-                  <tr>
-                    <td>Refills</td>
-                    <td><{{presc.remaining_refills}}></td>
-                    <!--- I think we should add a variable to discriminate between
-                    the original amount of refills and remaining refills --->
-                  </tr>
-               </tbody>
-               <div class="form-group">
-                    <div class="col-xs-12">
-                         <br>
-                         <button class="btn btn-lg btn-success pull-right" type="submit"><i class="glyphicon glyphicon-ok-sign" {% if patient.refills == 0%} disabled {% endif %}></i>Request Refill</button>
-                     </div>
-               </div>
-              </table>
+                 <table class= "table table-user-information">
+                  <tbody>
+                    <tr>
+                      <td>Name:</td>
+                      <td><{{presc.name}}></td>
+                    </tr>
+                    <tr>
+                      <td>Dosage:</td>
+                      <td><{{presc.amount}}></td>
+                    </tr>
+                    <tr>
+                      <td>Dosage Strength:</td>
+                      <td><{{presc.dosage_strength}}></td>
+                    </tr>
+                    <tr>
+                      <td>Refills:</td>
+                      <td><{{presc.refills_left}}></td>
+                    </tr>
+                    <tr>
+                      <td>Prescribe Date:</td>
+                      <td><{{presc.prescribe_date}}></td>
+                    </tr>
+                    <tr>
+                      <td>Disburse Date:</td>
+                      <td><{{presc.disbursed_date}}></td>
+                    </tr>
+                    <tr>
+                      <td>Directions:</td>
+                      <td><{{presc.directions}}></td>
+                    </tr>
+                 </tbody>
+                </table>
               {% endfor %}
           </div>
           <!--/Prescription-pane-->
@@ -180,16 +210,19 @@
                   <hr>
                   <form class="form" action="##" method="post" id="registrationForm">
                       <div class="form-group">
-                          <div class="col-xs-6">
-                              <label for="first_name"><h4>First name</h4></label>
-                              <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">
+                          <div class="col-xs-4">
+                              <label for="first_name"><h4>First Name</h4></label>
+                              <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name.">
                           </div>
-                      </div>
 
-                      <div class="form-group">
-                          <div class="col-xs-6">
-                            <label for="last_name"><h4>Last name</h4></label>
-                              <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
+                          <div class="form-group col-xs-4">
+                            <label for="middle_name"><h4>Middle Name</h4></label>
+                              <input type="text" class="form-control" name="middle_name" id="middle_name" placeholder="middle name" title="enter your middle name if any.">
+                          </div>
+
+                          <div class="form-group col-xs-4">
+                            <label for="last_name"><h4>Last Name</h4></label>
+                              <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name.">
                           </div>
                       </div>
 
@@ -202,8 +235,22 @@
 
                       <div class="form-group">
                           <div class="col-xs-6">
+                              <label for="username"><h4>Username</h4></label>
+                              <input type="username" class="form-control" name="username" id="username" placeholder="chioko" title="enter your new username.">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <div class="col-xs-6">
                               <label for="email"><h4>Email</h4></label>
                               <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <div class="col-xs-6">
+                              <label for="birthdate"><h4>Birthdate</h4></label>
+                              <input type="birthdate" class="form-control" name="birthdate" id="birthdate" placeholder="May 11th 1996" title="enter your birthdate.">
                           </div>
                       </div>
 
@@ -217,31 +264,31 @@
                       <div class="form-group">
                           <div class="col-xs-6">
                               <label for="insurance"><h4>Insurance #</h4></label>
-                              <input type="insurance" class="form-control" id="insurance" placeholder="Aetna, BlueShield, etc." title="enter a location">
+                              <input type="insurance" class="form-control" id="insurance" placeholder="Aetna, BlueShield, etc." title="enter an insurance #">
                           </div>
                       </div>
 
                       <div class="form-group">
                         <div class="col-xs-6">
-                          <label for="inputAddress"><h4>Address</h4></label>
+                          <label for="inputAddress"><h4>Street Address</h4></label>
                           <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
                         </div>
                       </div>
 
                       <div class="form-group">
                         <div class="col-xs-6">
-                          <label for="inputAddress2"><h4>Address 2</h4></label>
-                          <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                          <label for="inputAddress2"><h4>Country</h4></label>
+                          <input type="text" class="form-control" id="country" placeholder="United States">
                         </div>
                       </div>
 
                       <div class="form-group">
-                        <div class="col-xs-6">
+                        <div class="col-xs-4">
                           <label for="inputCity"><h4>City</h4></label>
                           <input type="text" class="form-control" id="inputCity">
                         </div>
 
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-xs-4">
                           <label for="inputState"><h4>State</h4></label>
                           <select id="inputState" class="form-control">
                             <option selected>Choose...</option>
@@ -249,26 +296,26 @@
                           </select>
                         </div>
 
-                        <div class="form-group col-md-2">
-                          <label for="inputZip"><h4>Zip</h4></label>
+                        <div class="form-group col-xs-4">
+                          <label for="inputZip"><h4>Zip Code</h4></label>
                           <input type="text" class="form-control" id="inputZip">
                         </div>
                       </div>
 
                       <div class="form-group">
-
                           <div class="col-xs-6">
                               <label for="password"><h4>Password</h4></label>
                               <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password.">
                           </div>
                       </div>
-                      <div class="form-group">
 
+                      <div class="form-group">
                           <div class="col-xs-6">
                             <label for="password2"><h4>Verify</h4></label>
                               <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2.">
                           </div>
                       </div>
+
                       <div class="form-group">
                            <div class="col-xs-12">
                                 <br>
@@ -289,7 +336,9 @@
     {{ super() }}
     {#
         <script src="{{ url_for('static', 'scripts/profile.js') }}"
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     #}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 {% endblock %}
